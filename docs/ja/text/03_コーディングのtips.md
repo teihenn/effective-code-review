@@ -5,6 +5,7 @@
     - [コミットメッセージをちゃんと書く](#コミットメッセージをちゃんと書く)
       - [Gitのコミットメッセージの標準: 50/72ルール\[2\]\[3\]](#gitのコミットメッセージの標準-5072ルール23)
     - [コードにコメントを書く](#コードにコメントを書く)
+  - [コミットメッセージにprefixを付ける\[6\]](#コミットメッセージにprefixを付ける6)
   - [コミット単位に注意を払う](#コミット単位に注意を払う)
   - [merge先のブランチの変更を反映するのに、mergeではなくrebaseを検討する\[4\]](#merge先のブランチの変更を反映するのにmergeではなくrebaseを検討する4)
   - [ドラフトPRを上手く使う](#ドラフトprを上手く使う)
@@ -47,6 +48,27 @@ TimeOfDay型の大部分はVisualStudioが生成した。
 ### コードにコメントを書く
 
 - *変更内で自分がやったことの理由をレビュアーが理解できないなら、自分がやったことがたとえ正しいとしても、そのようなコードの構造かコメント（またはその両方）は改善が必要だということがはっきりと表されている。コードレビュープロセスの最中に新しい決定が行われるに至った場合、変更履歴を更新するか、実装内に適切なコメントを追加しなければならない。コードレビューは、現在自分が行う活動であるだけでなく、自分の行ったことを後世に向けて記録するために行う活動なのだ。*[1]
+
+## コミットメッセージにprefixを付ける[6]
+
+- 何の変更なのかレビュアーがわかりやすい
+- 開発者が機能をprefixごとに作るようになる
+- （prefixを正しく付けることは本質ではなく、commitの単位を意識したり見やすくする意識付けに効果がある）
+
+Angularプロジェクトで使用されているprefix(https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#type)
+```
+feat: A new feature
+fix: A bug fix
+docs: Documentation only changes
+style: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
+refactor: A code change that neither fixes a bug nor adds a feature
+perf: A code change that improves performance
+test: Adding missing or correcting existing tests
+chore: Changes to the build process or auxiliary tools and libraries such as documentation generation
+```
+
+- choreは、上記に当てはまらないものにも使う
+- prefixはあくまでコミットが何をいじったものなのかわかりやすくするためなので分類は考えすぎず大雑把で良い
 
 ## コミット単位に注意を払う
 
