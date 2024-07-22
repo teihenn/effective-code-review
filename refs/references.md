@@ -1,4 +1,4 @@
-# 参考文献リスト
+# References / 参考文献
 
 [1] Software Engineering at Google: Lessons Learned from Programming Over Time, by Titus Winters, Tom Manshreck, Hyrum Wright published by O'Reilly Media, 2020. 邦訳「Googleのソフトウェアエンジニアリング: 持続可能なプログラミングを支える技術、文化、プロセス」(訳)久富木隆一, オライリー・ジャパン, 2021.
 
