@@ -8,10 +8,12 @@
 
 [4] [10 tips for better Pull Requests by Mark Seemann](https://blog.ploeh.dk/2015/01/15/10-tips-for-better-pull-requests/)
 
-[5] [google-eng-practices-ja: Google's Engineering Practices documentation 日本語訳](https://fujiharuka.github.io/google-eng-practices-ja/ja/review/reviewer/looking-for.html)
+[5] [Reviewing Pull Requests - Chelsea Troy](https://chelseatroy.com/2019/12/18/reviewing-pull-requests/)
 
-[6] [【今日からできる】コミットメッセージに 「プレフィックス」 をつけるだけで、開発効率が上がった話 - Qiita](https://qiita.com/numanomanu/items/45dd285b286a1f7280ed)
+[6] [google-eng-practices-ja: Google's Engineering Practices documentation 日本語訳](https://fujiharuka.github.io/google-eng-practices-ja/ja/review/reviewer/looking-for.html)
 
-[7] [コードレビューにラベルを付けるだけでチームの心理的安全性を高めた話 - Zenn](https://zenn.dev/hacobell_dev/articles/code-review-comment-prefix)
+[7] [【今日からできる】コミットメッセージに 「プレフィックス」 をつけるだけで、開発効率が上がった話 - Qiita](https://qiita.com/numanomanu/items/45dd285b286a1f7280ed)
 
-[8] [コミット履歴が " きれい " なPRはすごく助かる。ありがたい。好き。 - Qiita](https://qiita.com/_mi/items/f477e95a864474187e3d)
+[8] [コードレビューにラベルを付けるだけでチームの心理的安全性を高めた話 - Zenn](https://zenn.dev/hacobell_dev/articles/code-review-comment-prefix)
+
+[9] [コミット履歴が " きれい " なPRはすごく助かる。ありがたい。好き。 - Qiita](https://qiita.com/_mi/items/f477e95a864474187e3d)
