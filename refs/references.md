@@ -17,3 +17,7 @@
 [8] [コードレビューにラベルを付けるだけでチームの心理的安全性を高めた話 - Zenn](https://zenn.dev/hacobell_dev/articles/code-review-comment-prefix)
 
 [9] [コミット履歴が " きれい " なPRはすごく助かる。ありがたい。好き。 - Qiita](https://qiita.com/_mi/items/f477e95a864474187e3d)
+
+[10] How the Mind Works, by Pinker, Steven, The Folio Society, 2013. 邦訳「心の仕組み（上）」椋田直子（訳）、「心の仕組み（下）」山下篤子（訳）、筑摩書房
+
+[11] The Memory Illusion: Remembering, Forgetting, and the Science of False Memory, by Shaw, Julia, published by Random House, 2017. 邦訳「脳はなぜ都合よく記憶するのか：記憶科学が教える脳と人間の不思議」服部由美（訳）、講談社
