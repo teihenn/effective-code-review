@@ -21,3 +21,5 @@
 [10] How the Mind Works, by Pinker, Steven, The Folio Society, 2013. 邦訳「心の仕組み（上）」椋田直子（訳）、「心の仕組み（下）」山下篤子（訳）、筑摩書房
 
 [11] The Memory Illusion: Remembering, Forgetting, and the Science of False Memory, by Shaw, Julia, published by Random House, 2017. 邦訳「脳はなぜ都合よく記憶するのか：記憶科学が教える脳と人間の不思議」服部由美（訳）、講談社
+
+[12] "Advances in Software Inspection," IEEE Transactions on Software Engineering, SE-12(7):744-751, July 1986.
