@@ -1,7 +1,12 @@
 # コーディングのtips
 
 - [コーディングのtips](#コーディングのtips)
-  - [コードを小さく保つため、適切に抽象化する\[2\]](#コードを小さく保つため適切に抽象化する2)
+  - [コードを小さく保つため、適切に抽象化する](#コードを小さく保つため適切に抽象化する)
+    - [サイクロマティック複雑度\[2\]](#サイクロマティック複雑度2)
+    - [80/24ルール\[2\]](#8024ルール2)
+    - [どうやって適切に抽象化するのか](#どうやって適切に抽象化するのか)
+    - [抽象化前のコード例(サイクロマティック複雑度11)](#抽象化前のコード例サイクロマティック複雑度11)
+    - [抽象化後のコード例(サイクロマティック複雑度1)](#抽象化後のコード例サイクロマティック複雑度1)
   - [良い変更説明を書く](#良い変更説明を書く)
     - [コミットメッセージを適切に書く](#コミットメッセージを適切に書く)
       - [Gitのコミットメッセージの標準: 50/72ルール\[2\]\[3\]](#gitのコミットメッセージの標準-5072ルール23)
@@ -14,60 +19,97 @@
   - [ドラフトPRを上手く使う](#ドラフトprを上手く使う)
 
 
-## コードを小さく保つため、適切に抽象化する[2]
+## コードを小さく保つため、適切に抽象化する
 
-### サイクロマティック複雑度
+### サイクロマティック複雑度[2]
 - コードの複雑度のメトリクス。コードの断片を通る経路を数えるもの
-- 1から始めてifやforなどが何回登場するかを数える
-    - ポイントは分岐とループの命令を数えること
+- 1から始めてifやforなど分岐とループの命令が何回登場するかを数える
 - キーワードが登場するごとに、（1から始まる）数字をインクリメントする
 - 7を超える場合はその関数は複雑過ぎるためリファクタリングしたほうが良い
     - 人間の短期記憶は4〜7個の情報しか保持できない[10][11]
 
-- サイクロマティック複雑度2のコード例
-    - シンプルで理解しやすく、テストも容易
-    ```python
-    def low_complexity_function(score):
-        if score >= 70:
-            return "合格"
-        else:
-            return "不合格"
-    ```
+- あとで例を示す
 
-- サイクロマティック複雑度7のコード例
-    ```python
-    def high_complexity_function(score, attendance, extra_credit):
-        if attendance < 80:
-            if extra_credit:
-                if score >= 60:
-                    return "条件付き合格"
-                else:
-                    return "不合格"
-            else:
-                return "不合格"
-        else:
-            if score >= 70:
-                return "合格"
-            elif score >= 60:
-                if extra_credit:
-                    return "条件付き合格"
-                else:
-                    return "不合格"
-            else:
-                return "不合格"
-    ```
-
-### 80/24ルール
-- 脳に収まるようにコードを書くため、横幅の最大文字数/メソッドの最大行数の目安を持つと良い
+### 80/24ルール[2]
+- 横幅の最大文字数/メソッドの最大行数の目安を持つと良い
 - 横幅：80文字
 - メソッドの最大行数：24行
-- 横幅を長くしすぎないことで、画面分割してunit testとテスト対象のコードを両方見ることも出来るし、side by sideビューでdiffを見ることも出来る。また縦にも長くしすぎないことで、スクロールせずにメソッドの全容が見える
+- 80/24という数字自体が重要なわけではない。要は、横幅を長くしすぎないことで、画面分割してunit testとテスト対象のコードを両方見ることも出来るし、side by sideビューでdiffを見ることも出来る。また縦にも長くしすぎないことで、スクロールせずにメソッドの全容が見える
 
 ### どうやって適切に抽象化するのか
-- 物事の本質を抽出する：多くのことを1つのことに置き換える
-- ひとまとまりの処理を1つのメソッドに抽出する
+- 物事の本質を抽出する: ひとまとまりの処理を1つのメソッドに抽出する
     - 実装の詳細を見ずとも、処理の流れのなかでその1つのメソッドの意図が分かるようになっていれば、上手く抽象化出来ている
 - 1つの関数内で何でもやろうとせず、責務ごとにクラスを作り、処理を委譲する
+
+### 抽象化前のコード例(サイクロマティック複雑度11)
+
+```python
+def calculate_discounted_price(total_price, user_type, is_holiday, coupon_code):
+    discount = 0
+
+    if user_type == "premium":
+        if total_price >= 100:
+            discount = 0.20
+        elif total_price >= 50:
+            discount = 0.15
+        else:
+            discount = 0.10
+    elif user_type == "regular":
+        if total_price >= 100:
+            discount = 0.10
+        elif total_price >= 50:
+            discount = 0.05
+        else:
+            discount = 0
+
+    if is_holiday:
+        discount += 0.05
+
+    if coupon_code == "SAVE10":
+        if discount < 0.10:
+            discount = 0.10
+    elif coupon_code == "SAVE20" and total_price >= 200:
+        discount = max(discount, 0.20)
+
+    return total_price * (1 - discount)
+
+# 使用例
+price = calculate_discounted_price(120, "premium", True, "SAVE20")
+print(f"割引後の価格: {price}")
+```
+
+### 抽象化後のコード例(サイクロマティック複雑度1)
+
+```python
+def get_base_discount(total_price, user_type):
+    discounts = {
+        "premium": [(100, 0.20), (50, 0.15), (0, 0.10)],
+        "regular": [(100, 0.10), (50, 0.05), (0, 0)]
+    }
+    for threshold, discount in discounts[user_type]:
+        if total_price >= threshold:
+            return discount
+
+def apply_holiday_discount(discount, is_holiday):
+    return discount + 0.05 if is_holiday else discount
+
+def apply_coupon(discount, total_price, coupon_code):
+    if coupon_code == "SAVE10":
+        return max(discount, 0.10)
+    elif coupon_code == "SAVE20" and total_price >= 200:
+        return max(discount, 0.20)
+    return discount
+
+def calculate_discounted_price(total_price, user_type, is_holiday, coupon_code):
+    discount = get_base_discount(total_price, user_type)
+    discount = apply_holiday_discount(discount, is_holiday)
+    discount = apply_coupon(discount, total_price, coupon_code)
+    return total_price * (1 - discount)
+
+# 使用例
+price = calculate_discounted_price(120, "premium", True, "SAVE20")
+print(f"割引後の価格: {price}")
+```
 
 ## 良い変更説明を書く
 
