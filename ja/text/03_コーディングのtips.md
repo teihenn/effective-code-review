@@ -187,7 +187,7 @@ TimeOfDayのstructを導入
 ## コミットメッセージにprefixを付ける[7]
 
 - 何の変更なのかレビュアーがわかりやすい
-- 開発者が機能をprefixごとに作るようになる
+- 開発者がコミットの粒度を意識するようになる
 - （prefixを正しく付けることは本質ではなく、commitの単位を意識したり見やすくする意識付けに効果がある）
 
 Angularプロジェクトで使用されているprefix(https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#type)
