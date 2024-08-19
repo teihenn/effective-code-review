@@ -10,7 +10,7 @@
 
 [5] [Reviewing Pull Requests - Chelsea Troy](https://chelseatroy.com/2019/12/18/reviewing-pull-requests/)
 
-[6] [google-eng-practices-ja: Google's Engineering Practices documentation 日本語訳](https://fujiharuka.github.io/google-eng-practices-ja/ja/review/reviewer/looking-for.html)
+[6] [google-eng-practices-ja: Google's Engineering Practices documentation 日本語訳](https://fujiharuka.github.io/google-eng-practices-ja/)
 
 [7] [【今日からできる】コミットメッセージに 「プレフィックス」 をつけるだけで、開発効率が上がった話 - Qiita](https://qiita.com/numanomanu/items/45dd285b286a1f7280ed)
 
