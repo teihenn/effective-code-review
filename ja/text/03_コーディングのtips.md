@@ -248,3 +248,7 @@ chore: Changes to the build process or auxiliary tools and libraries such as doc
     - rebaseするとコミットハッシュが変わるので、特定のコミットを参照して話をしている場合などに、指しているコミットが変わってしまうかもしれない
     - 要は他の人がpullしている可能性などがある場合はrebaseはやめておいたほうが良い
 - OSSでもmerge先ブランチの反映にはrebaseを使うことをルールにしているものは多い
+
+参考：
+- [Merging vs rebasing - Atlassian](https://www.atlassian.com/ja/git/tutorials/merging-vs-rebasing)
+- [Appendix_コミットまわりのテクニック](./Appendix_コミットまわりのテクニック.md)
