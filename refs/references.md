@@ -23,3 +23,6 @@
 [11] The Memory Illusion: Remembering, Forgetting, and the Science of False Memory, by Shaw, Julia, published by Random House, 2017. 邦訳「脳はなぜ都合よく記憶するのか：記憶科学が教える脳と人間の不思議」服部由美（訳）、講談社
 
 [12] "Advances in Software Inspection," IEEE Transactions on Software Engineering, SE-12(7):744-751, July 1986.
+
+[13] [Merging vs rebasing - Atlassian](https://www.atlassian.com/ja/git/tutorials/merging-vs-rebasing)
+
