@@ -44,7 +44,7 @@
 
 1. 入れ忘れた内容をstagingする
 2. git commit --amendでコミットする
-3. --forceを付けてgit push
+3. git pushする(一つ前のコミットがリモートにpush済みだった場合は強制pushが必要)
 
 ## 直前のコミットより前のコミットに修正を入れ込みたい場合(interactive rebase)
 
