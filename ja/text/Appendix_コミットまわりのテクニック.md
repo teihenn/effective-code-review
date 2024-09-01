@@ -1,5 +1,5 @@
 - [任意の行のコミットメッセージや変更履歴を確認する](#任意の行のコミットメッセージや変更履歴を確認する)
-  - [⭐VSCode拡張機能のGitLensを使用する](#vscode拡張機能のgitlensを使用する)
+  - [VSCode拡張機能のGitLensを使用する](#vscode拡張機能のgitlensを使用する)
   - [git blame](#git-blame)
 - [コミットの再編集](#コミットの再編集)
   - [一つ前のコミットに入れ忘れがあった時](#一つ前のコミットに入れ忘れがあった時)
@@ -13,7 +13,7 @@
 
 # 任意の行のコミットメッセージや変更履歴を確認する
 
-## ⭐VSCode拡張機能のGitLensを使用する
+## VSCode拡張機能のGitLensを使用する
 - コミットメッセージのインライン表示機能
 
 ![inline_commit_message](../../assets/vscode_gitlens_inline_commit_msg.png)
