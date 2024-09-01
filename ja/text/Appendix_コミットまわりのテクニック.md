@@ -109,7 +109,7 @@ feat: 加算機能
 7. pushする際は、リモートにpush済みのものに対しrebaseした場合は強制pushする必要が有る
 
 ```text
-git push --force-with-lease origin feature/xxx
+git push --force origin feature/xxx
 ```
 
 ちなみにfixupではなくeditやsquashでも出来る。
@@ -168,7 +168,7 @@ git rebase develop
 4. rebaseが完了したら必要に応じて強制push
 
 ```bash
-git push --force-with-lease origin feature/xxx
+git push --force origin feature/xxx
 ```
 
 参考：
