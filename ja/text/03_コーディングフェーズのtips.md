@@ -28,14 +28,17 @@
 
 ## コードを小さく保つため、適切に抽象化する
 
+コードが複雑になりすぎていないかは常に注意を払っておくべき。
+
 ### サイクロマティック複雑度[2]
-- コードの複雑度のメトリクス。コードの断片を通る経路を数えるもの
+- コードの複雑度のメトリクス。コードの経路を数えるもの
 - 1から始めてifやforなど分岐とループの命令が何回登場するかを数える
 - キーワードが登場するごとに、（1から始まる）数字をインクリメントする
 - 7を超える場合はその関数は複雑過ぎるためリファクタリングしたほうが良い
     - 人間の短期記憶は4〜7個の情報しか保持できない[10][11]
 
-- あとで例を示す
+<br>
+下で例を示す
 
 ### 80/24ルール[2]
 - 横幅の最大文字数/メソッドの最大行数の目安を持つと良い
@@ -88,7 +91,7 @@ print(f"割引後の価格: {price}")
 ### 抽象化後のコード例(サイクロマティック複雑度1)
 
 ```python
-def get_base_discount(total_price, user_type):
+def _get_base_discount(total_price, user_type):
     discounts = {
         "premium": [(100, 0.20), (50, 0.15), (0, 0.10)],
         "regular": [(100, 0.10), (50, 0.05), (0, 0)]
@@ -97,10 +100,10 @@ def get_base_discount(total_price, user_type):
         if total_price >= threshold:
             return discount
 
-def apply_holiday_discount(discount, is_holiday):
+def _apply_holiday_discount(discount, is_holiday):
     return discount + 0.05 if is_holiday else discount
 
-def apply_coupon(discount, total_price, coupon_code):
+def _apply_coupon(discount, total_price, coupon_code):
     if coupon_code == "SAVE10":
         return max(discount, 0.10)
     elif coupon_code == "SAVE20" and total_price >= 200:
@@ -108,9 +111,9 @@ def apply_coupon(discount, total_price, coupon_code):
     return discount
 
 def calculate_discounted_price(total_price, user_type, is_holiday, coupon_code):
-    discount = get_base_discount(total_price, user_type)
-    discount = apply_holiday_discount(discount, is_holiday)
-    discount = apply_coupon(discount, total_price, coupon_code)
+    discount = _get_base_discount(total_price, user_type)
+    discount = _apply_holiday_discount(discount, is_holiday)
+    discount = _apply_coupon(discount, total_price, coupon_code)
     return total_price * (1 - discount)
 
 # 使用例
@@ -143,7 +146,7 @@ print(f"割引後の価格: {price}")
     - 好きなだけテキストを追加してよいが、幅が72文字以内になるようにフォーマットする
 - 50/72ルールの利点
     - git log --onelineやGitHub, Bitbucketなど各ツールでコミットの一覧を見るときに見やすい
-    - 現在形で書くことで行が短くなりやすい
+    - 現在形で書くことで行が短くなりやすい（見やすくなる）
 - コミットメッセージの内容
     - コードが自明なときはサマリーだけで良い
     - 少しでも疑問が浮かびそうなものは、コンテキストを追加する
@@ -192,7 +195,9 @@ print(f"割引後の価格: {price}")
 
 ### コードにコメントを書く
 
-- *変更内で自分がやったことの理由をレビュアーが理解できないなら、自分がやったことがたとえ正しいとしても、そのようなコードの構造かコメント（またはその両方）は改善が必要だということがはっきりと表されている。コードレビュープロセスの最中に新しい決定が行われるに至った場合、変更履歴を更新するか、実装内に適切なコメントを追加しなければならない。*[1]
+- 自分の変更差分やその理由をレビュアーが理解出来ないなら、自分のやったことが正しいとしても、コードの構造かコメント（またはその両方）は改善が必要[1]
+- コミットメッセージより目につきやすいため、重要度の高い補足情報や、挙動の理解に役立つ補足などを記載する
+- docstringやJavaDocなどは、Public関数やクラスには完備する
 
 ### コードコメント or コミットメッセージ or PR説明？
 
@@ -211,12 +216,12 @@ print(f"割引後の価格: {price}")
 - 複雑な部分の認知負荷を下げる説明
     - パッと見何しているかすぐにわかりづらいような場所に自然言語で説明を付ける
 
-コミットメッセージに書くもの
+コミットメッセージに書くもの（主にレビュー時に活躍する）
 
 - その差分に対する変更意図
 - コードコメントに書くと冗長になるが、思考として残しておきたい情報
     - この差分の目的の実現方法として他にこういう選択肢があったが、今回の差分ではこの方法を選んだ理由、とか
-        - (目につきやすいコードコメントに書いておいた方が良い内容かはその時々によるとは思う。可読性と内容の重要性のトレードオフ)
+        - (目につきやすいコードコメントに書いておいた方が良い内容かはその時々による。可読性と内容の重要性のトレードオフ)
 
 #### PRの説明欄やPRコメントに書くもの
 
@@ -224,9 +229,8 @@ print(f"割引後の価格: {price}")
 
 - PRの目的、変更概要
 - 悩んでいる部分や特に重点的にレビューしてもらいたい箇所(あれば)
-- レビューするうえでの補足情報
-    - その機能の要件が分かるドキュメントやチケットリンク
-    - PRの目的とは違うものが少し含まれている場合にそれを補足(ついでに少し既存コメントを直したものがあるとか)
+- その機能の要件が分かるドキュメントやチケットリンク
+- PRの目的とは違うものが少し含まれている場合にそれを補足(ついでに少し既存コメントを直したものがあるとか)
 
 <br>
 
@@ -236,31 +240,32 @@ print(f"割引後の価格: {price}")
 
 コミット単位は意味のあるまとまりになるようにする。具体的には、一つの意思決定につき一つのコミットという単位になっていると良い[9]
 
-- 例えば、異なる機能の追加は一つのコミットに混ぜない（混ぜると差分のどの部分がどの目的のものかわかりづらくなる）
-  - ❌「AとBを出来るようにする」
+- 例えば、異なる機能の追加は一つのコミットに混ぜない（混ぜると差分のどの部分がどの目的のものかわかりづらくなる）。また、コミットメッセージに合致しない差分を混ぜない
+  - ❌「Aを出来るようにする（実はBも出来るようにしている）」
   - ⭕「Aを出来るようにする」「Bを出来るようにする」
 - 「一つの意思決定」の粒度：PRの目的を達成するための構成要素一つ一つのイメージ
-- そうなっていればコミットメッセージが書きやすくprefix(後述)も上手く付けられるはず
-- コミットメッセージに合致しない差分を混ぜない
+- そうなっていればコミットメッセージも書きやすくprefix(後述)も上手く付けられるはず
 
 <br>
 コミット単位を一つの意思決定ごとにするメリット↓
 
-- 適切なコミット単位に適切なコミットメッセージがあると、差分と意思決定の背景をセットで見ることが出来る（コミット単位でのレビューが可能になる）のでレビューがとてもしやすい
+- 適切なコミット単位に適切なコミットメッセージがあると、差分とその意図をセットで見ることが出来る（コミット単位でのレビューが可能になる）のでレビューがとてもしやすい
 - 一つの意思決定ごとのコミットになっていると、やっぱりやめたいのでresetして戻す、なども容易
 
 <br>
 
-コミットは必要に応じてinteractive rebaseやgit commit --amendを活用してまとめる
+コミットは必要に応じてinteractive rebaseやgit commit --amendを活用してまとめながら開発出来ると良い。
 - 例えば機能Aの追加、その修正、そのまた修正、という3つのコミットがあるのであればこれは1つにまとまっていた方がツリーも綺麗でレビューしやすい
 
 参考：[Appendix_コミットまわりのテクニック](./Appendix_コミットまわりのテクニック.md)
 
 ## コミットメッセージにprefixを付ける[7]
 
-- どんな変更なのか瞬時に分かるのでレビューしやすい
+- コミットメッセージにprefixを付けると、どんな変更なのか瞬時に分かるのでレビューしやすくなる
+    - 例：「feat: ◯◯を出来るようにする」
+    - 例えばコミットの一覧を眺めたときに今見たいのはどれかなどがすぐ分かりやすい
 - 開発者がコミットの粒度を意識するようになる
-- （prefixを正しく付けることは本質ではなく、commitの単位を意識したり見やすくする意識付けに効果がある）
+- （prefixを正しく付けることは本質ではなく、commitの単位を意識したり見やすくする意識付けに効果がある（なので分類で悩みすぎない））
 
 Angularプロジェクトで使用されているprefix(https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#type)
 ```
@@ -274,8 +279,6 @@ test: Adding missing or correcting existing tests
 chore: Changes to the build process or auxiliary tools and libraries such as documentation generation
 ```
 
-- prefixはあくまでコミットが何をいじったものなのかわかりやすくするためなので分類は考えすぎず大雑把で良い
-
 ## ドラフトPRを上手く使う
 
 - 大きな手戻りを防ぐため、途中でもチームメンバーと相談したいことがあればドラフトPRを出し相談する
@@ -287,17 +290,15 @@ chore: Changes to the build process or auxiliary tools and libraries such as doc
 - featureブランチへのマージコミットはノイズになり本来の修正の履歴が分かりづらくなってしまう
     - bitbucketなどのGUIではさほど見づらくないが、git logで見るとマージコミットの中身のそれぞれのコミットのログも表示されてしまうのでかなり見づらくなる
     - rebaseしておいたほうがコミットツリーが直線的になりわかりやすい
-- rebaseは履歴を書き換えるため、他の開発者と共有しているブランチに対してはmergeを使用するほうが良い
+- rebaseは履歴を書き換えるため、他の開発者と共有しているブランチではmergeを使うか合意を取る
 - PR提出後はmergeのほうが好ましい
     - PR提出後は、他の開発者がレビューやテストを行っている可能性があるので、履歴を変更しないほうが安全である
-    - rebaseするとコミットハッシュが変わるので、特定のコミットを参照して話をしている場合などに、指しているコミットが変わってしまうかもしれない
+    - rebaseするとコミットハッシュが変わるので、コミットリンクが古いものになる
     - 要は他の人がpullしている可能性などがある場合はrebaseはやめておいたほうが良い
-- OSSでもmerge先ブランチの反映にはrebaseを使うことをルールにしているものは多い
 
 参考：
 - [Merging vs rebasing - Atlassian](https://www.atlassian.com/ja/git/tutorials/merging-vs-rebasing)
 - [Appendix_コミットまわりのテクニック](./Appendix_コミットまわりのテクニック.md)
-
 
 ## コマンドクエリ分離（CQS）[2]
 
