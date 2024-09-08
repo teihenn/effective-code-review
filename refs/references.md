@@ -26,3 +26,4 @@
 
 [13] [Merging vs rebasing - Atlassian](https://www.atlassian.com/ja/git/tutorials/merging-vs-rebasing)
 
+[14] [その説明、コードコメントに書く？コミットメッセージに書く？プルリクエストに書く？](https://speakerdeck.com/okashoi/sonoshuo-ming-kodokomentonishu-ku-komitutometusezinishu-ku-pururikuesutonishu-ku-number-phpconfuk-2023)
