@@ -259,7 +259,7 @@ print(f"割引後の価格: {price}")
 
 <br>
 
-コミットは必要に応じてinteractive rebaseやgit commit --amendを活用してまとめながら開発出来ると良い。
+コミットは必要に応じてinteractive rebaseやamend commitを活用してまとめながら開発出来ると良い。
 - 例えば機能Aの追加、その修正、そのまた修正、という3つのコミットがあるのであればこれは1つにまとまっていた方がツリーも綺麗でレビューしやすい
 
 参考：[Appendix_コミットまわりのテクニック](./Appendix_コミットまわりのテクニック.md)
