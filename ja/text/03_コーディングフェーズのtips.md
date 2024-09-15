@@ -286,7 +286,8 @@ chore: Changes to the build process or auxiliary tools and libraries such as doc
 ## ドラフトPRを上手く使う
 
 - 大きな手戻りを防ぐため、途中でもチームメンバーと相談したいことがあればドラフトPRを出し相談する
-- BitbucketではドラフトPR機能は無いが、レビュアーの設定を無しにすれば似たような使い方は出来る
+- BitbucketなどはドラフトPR機能は無いが、レビュアーの設定を無しにすれば似たような使い方は出来る
+- もしくは、ドラフトPRとしてわざわざ出さなくても、単にブランチ画面から差分を見ながら話すとかでも◯
 
 ## merge先のブランチの変更を反映するのに、mergeではなくrebaseを検討する[4][13]
 
