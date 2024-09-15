@@ -20,8 +20,8 @@
       - [PRの説明欄やPRコメントに書くもの](#prの説明欄やprコメントに書くもの)
   - [コミット単位に注意を払う](#コミット単位に注意を払う)
   - [コミットメッセージにprefixを付ける\[7\]](#コミットメッセージにprefixを付ける7)
-  - [ドラフトPRを上手く使う](#ドラフトprを上手く使う)
   - [merge先のブランチの変更を反映するのに、mergeではなくrebaseを検討する\[4\]\[13\]](#merge先のブランチの変更を反映するのにmergeではなくrebaseを検討する413)
+  - [ドラフトPRを上手く使う](#ドラフトprを上手く使う)
   - [コマンドクエリ分離（CQS）\[2\]](#コマンドクエリ分離cqs2)
   - [コードは債務である認識を忘れない\[1\]](#コードは債務である認識を忘れない1)
 
@@ -284,12 +284,6 @@ test: Adding missing or correcting existing tests
 chore: Changes to the build process or auxiliary tools and libraries such as documentation generation
 ```
 
-## ドラフトPRを上手く使う
-
-- 大きな手戻りを防ぐため、途中でもチームメンバーと相談したいことがあればドラフトPRを出し相談する
-- BitbucketなどはドラフトPR機能は無いが、レビュアーの設定を無しにすれば似たような使い方は出来る
-- もしくは、ドラフトPRとしてわざわざ出さなくても、単にブランチ画面から差分を見ながら話すとかでも⭕
-
 ## merge先のブランチの変更を反映するのに、mergeではなくrebaseを検討する[4][13]
 
 - rebaseの場合は不要なマージコミットが作成されない
@@ -305,6 +299,12 @@ chore: Changes to the build process or auxiliary tools and libraries such as doc
 参考：
 - [Merging vs rebasing - Atlassian](https://www.atlassian.com/ja/git/tutorials/merging-vs-rebasing)
 - [Appendix_コミットまわりのテクニック](./Appendix_コミットまわりのテクニック.md)
+
+## ドラフトPRを上手く使う
+
+- 大きな手戻りを防ぐため、途中でもチームメンバーと相談したいことがあればドラフトPRを出し相談する
+- BitbucketなどはドラフトPR機能は無いが、レビュアーの設定を無しにすれば似たような使い方は出来る
+- もしくは、ドラフトPRとしてわざわざ出さなくても、単にブランチ画面から差分を見ながら話すとかでも⭕
 
 ## コマンドクエリ分離（CQS）[2]
 
