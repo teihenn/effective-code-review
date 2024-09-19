@@ -17,12 +17,12 @@
 ## VSCode拡張機能のGitLensを使用する
 - コミットメッセージのインライン表示機能
 
-![inline_commit_message](../../assets/vscode_gitlens_inline_commit_msg.png)
+![inline_commit_message](../assets/vscode_gitlens_inline_commit_msg.png)
 
 
 - Line History機能
 
-![line_history](../../assets/vscode_gitlens_line_hist.png)
+![line_history](../assets/vscode_gitlens_line_hist.png)
 
 
 ## git blame
